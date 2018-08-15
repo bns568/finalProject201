@@ -17,11 +17,11 @@ let responseAppear = document.getElementById('response')
 let index=0;
 
 // creating a varibale that stores an array boolean values (true) when user clicks on correct choice
-let correctAnswerChosen = [];
+let correctAnswerChosen = 0;
 console.log(correctAnswerChosen);
 
 // creating a varibale that stores an array boolean values (false) when user clicks on incorrect choice
-let incorrectAnswerChosen = [];
+let incorrectAnswerChosen = 0;
 console.log(incorrectAnswerChosen);
 
 //===========OBJECT CONSTRUCTOR & INSTANCES============
@@ -89,6 +89,7 @@ answerChoices();
 
 //Function that will give the  response "correct" when the correct choice is clicked + score property (boolean)
 let responseCheck = function(){
+    
     console.log("user response = " + quizBank[index].userResponse); 
     console.log("correct answer = " + quizBank[index].correctAnswer);
     
@@ -100,6 +101,14 @@ let responseCheck = function(){
         answersAppear[1].removeEventListener('click',clicked);
         answersAppear[2].removeEventListener('click',clicked);
         answersAppear[3].removeEventListener('click',clicked);
+
+        if (responseAppear.innerText = "Correct"){
+            correctAnswerChosen++
+            let score1 = document.getElementById('correct-answers')
+            score1.innerText = correctAnswerChosen++
+            
+        
+        }
     }
     else {
         responseAppear.innerText = "Incorrect";
@@ -109,8 +118,16 @@ let responseCheck = function(){
         answersAppear[1].removeEventListener('click',clicked);
         answersAppear[2].removeEventListener('click',clicked);
         answersAppear[3].removeEventListener('click',clicked);
+
+        if (responseAppear.innerText = "Incorrect"){
+            incorrectAnswerChosen++
+            let score2 = document.getElementById('incorrect-answers')
+            score2.innerText = incorrectAnswerChosen++        
+    
+        }
     }
 
+    counter = 0
     //if there are no more questions to be asked, do not display the "next" button
     if (counter < quizBank.length){
         let buttonHolder = document.getElementById('buttonHolder');
@@ -122,7 +139,13 @@ let responseCheck = function(){
 }
 
 
+// correctAnswerChosen = function(){
 
+// }
+
+
+
+// console.log(correctAnswerChosen)
 
 //function for not allowing the user to choose an answer more than once. The placement of this may be off, just because at this point of reading the script, you have not gotten to the event yet. 
 // let oneChoice =function(){
@@ -141,11 +164,17 @@ let responseCheck = function(){
 let clicked = function(e) {
     quizBank[index].userResponse = e.target.innerHTML; 
     responseCheck();
-    oneChoice();
+    // oneChoice();
 }
+
+
+
+
+
 
 //==============FIRING EVENTS + EXECUTION===============
 // creating an code to run when the event click is fired in my HTML
+
 answersAppear[0].addEventListener('click',clicked);
 answersAppear[1].addEventListener('click',clicked);
 answersAppear[2].addEventListener('click',clicked);
