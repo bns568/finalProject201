@@ -69,7 +69,7 @@ q34 = new Question('DOM', 'Methods that find elements in the DOM are called what
 q35 = new Question('DOM', 'A collection of nodes is known as a _______?', ['nodeList', 'nodeArray', 'nodeQuery', 'nodeScript'], null, null) ;
 
 //pushing the questions of the function questions objects into an array that holds all the questions for the function topic
-quizBank.push(q01,q02);
+quizBank.push(q01, q02, q03, q04, q05, q11, q12, q21, q22, q23, q31, q32, q33, q34, q35);
 
 //=========Index for tracking what questions we are on===============
 
@@ -87,7 +87,12 @@ function indexFunc() {
 //creating a function that populates question on the html page
 let questionPopulate= function(){
         index = indexFunc(); 
+        //prevents repeated questions
+        while (quizBank[index].displayed) {
+            index = indexFunc();
+        }
         questionsAppear[counter].innerHTML = quizBank[index].question;
+        quizBank[index].displayed = true;
         questionsAppear = document.getElementsByClassName('populateQuestions');
 }
 
@@ -124,6 +129,10 @@ let responseCheck = function(){
         buttonHolder.appendChild(questionButton);
         questionButton.innerText = 'Next Question';  
     } 
+    //else remove the next button
+    else {
+        buttonHolder.removeChild(questionButton);
+    }
 }
 
 let clicked = function(e) {
