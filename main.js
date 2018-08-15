@@ -7,13 +7,15 @@ let counter = 0;
 let index=0;
 
 //assigning my HTLML element to a variable that holds the spot for the question
-let questionsAppear = document.getElementsByClassName('populateQuestions')
+let questionsAppear = document.getElementsByClassName('populateQuestions');
 
 //assigning my HTML elements with attribute class to a variable that will hold the list of answer choice.
-let answersAppear = document.getElementsByClassName('answerChoice')
+let answersAppear = document.getElementsByClassName('answerChoice');
 
 //creating a variable that will hold the HTML element which displays response to user after they click
-let responseAppear = document.getElementById('response')
+let responseAppear = document.getElementsByClassName('response');
+
+let quizElement = document.getElementById('quiz');
 
 //create a next button
 let buttonHolder = document.getElementById('buttonHolder');
@@ -103,12 +105,17 @@ let answerChoices = function(){
 
 //Function that will give the  response "correct" when the correct choice is clicked + score property (boolean)
 let responseCheck = function(){
+    let response = document.createElement('p');
+    response.setAttribute('class', 'response');
+    quizElement.appendChild(response);
+    responseAppear = document.getElementsByClassName('response');
+
     if (quizBank[index].userResponse === quizBank[index].correctAnswer){
-        responseAppear.innerText = "Correct";
+        responseAppear[counter].innerText = "Correct";
         quizBank[index].result = true;
     }
     else {
-        responseAppear.innerText = "Incorrect";
+        responseAppear[counter].innerText = "Incorrect";
         quizBank[index].result = false;
     }
 
@@ -128,7 +135,6 @@ let clicked = function(e) {
 let nextClicked = function (e) {
     counter++;
 
-    let quizElement = document.getElementById('quiz');
     let newQuestion = document.createElement('p');
     quizElement.appendChild(newQuestion);
     newQuestion.setAttribute('class', 'populateQuestions');
