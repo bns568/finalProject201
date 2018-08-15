@@ -19,14 +19,6 @@ let responseAppear = document.getElementById('response')
 let buttonHolder = document.getElementById('buttonHolder');
 let questionButton= document.createElement('button');
 
-// creating a varibale that stores an array boolean values (true) when user clicks on correct choice
-let correctAnswerChosen = [];
-console.log(correctAnswerChosen);
-
-// creating a varibale that stores an array boolean values (false) when user clicks on incorrect choice
-let incorrectAnswerChosen = [];
-console.log(incorrectAnswerChosen);
-
 //===========OBJECT CONSTRUCTOR & INSTANCES============
 
 //creating an object constructor with properties and method for the questions
@@ -76,7 +68,6 @@ q35 = new Question('DOM', 'A collection of nodes is known as a _______?', ['node
 
 //pushing the questions of the function questions objects into an array that holds all the questions for the function topic
 quizBank.push(q01,q02);
-console.log(quizBank);
 
 //=========Index for tracking what questions we are on===============
 
@@ -98,28 +89,20 @@ let questionPopulate= function(){
         questionsAppear = document.getElementsByClassName('populateQuestions');
 }
 
-questionPopulate();
-
 //Placeholder for creating a function to randomize the answer options each time they appear (not part of the MVP)
 
 //creating a function that will populate the "answer options" property
 let answerChoices = function(){
     //since "answerAppear" was assigned a class name, then we can use it as an array. class attribute acts an array.
-
-
     for (let i=0; i < answersAppear.length; i++){
         answersAppear[i].innerText= quizBank[index].answerOptions[i];
     }
 }
-answerChoices();
 
 //==========FUNCTIONS FOR EVENT HANDLERS ================
 
 //Function that will give the  response "correct" when the correct choice is clicked + score property (boolean)
 let responseCheck = function(){
-    console.log("user response = " + quizBank[index].userResponse); 
-    console.log("correct answer = " + quizBank[index].correctAnswer);
-    
     if (quizBank[index].userResponse === quizBank[index].correctAnswer){
         responseAppear.innerText = "Correct";
         quizBank[index].result = true;
@@ -136,22 +119,10 @@ let responseCheck = function(){
     } 
 }
 
-//function for not allowing the user to choose an answer more than once. The placement of this may be off, just because at this point of reading the script, you have not gotten to the event yet. 
-let oneChoice =function(){
-    answersAppear[0].removeEventListener('click',clicked)
-    answersAppear[1].removeEventListener('click',clicked)
-    answersAppear[2].removeEventListener('click',clicked)
-    answersAppear[3].removeEventListener('click',clicked)
-}
-
-//========EVENT HANDLERS=======
-
-//Event handler for correct response
-
 let clicked = function(e) {
     quizBank[index].userResponse = e.target.innerHTML; 
     responseCheck();
-    oneChoice();
+    removeEventFunc();
 }
 
 let nextClicked = function (e) {
@@ -175,17 +146,25 @@ let nextClicked = function (e) {
         newAnswer.setAttribute('class', 'answerChoice');
         newAnswer.innerText = quizBank[index].answerOptions[i];
     }
+    answerEventFunc();
 }
 
 //==============FIRING EVENTS + EXECUTION===============
 // creating an code to run when the event click is fired in my HTML
-answersAppear[0].addEventListener('click',clicked);
-answersAppear[1].addEventListener('click',clicked);
-answersAppear[2].addEventListener('click',clicked);
-answersAppear[3].addEventListener('click',clicked);
+let answerEventFunc = function() {
+    for(let i= (counter * 4); i < answersAppear.length; i++){
+        answersAppear[i].addEventListener('click', clicked);
+    }
+}
+
+let removeEventFunc = function() {
+    for(let i= (counter * 4); i < answersAppear.length; i++){
+        answersAppear[i].removeEventListener('click', clicked);
+    }
+}
 
 questionButton.addEventListener('click', nextClicked)
 
-// //creating a code to run the next question in the array when the click "Next question" button is clicked
-
-console.log("qAlength " + questionsAppear.length);
+questionPopulate();
+answerChoices();
+answerEventFunc();
