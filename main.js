@@ -15,6 +15,15 @@ let answersAppear = document.getElementsByClassName('answerChoice');
 //creating a variable that will hold the HTML element which displays response to user after they click
 let responseAppear = document.getElementsByClassName('response');
 
+
+// creating a varibale that stores an array boolean values (true) when user clicks on correct choice
+let correctAnswerChosen = 0;
+console.log(correctAnswerChosen);
+
+// creating a varibale that stores an array boolean values (false) when user clicks on incorrect choice
+let incorrectAnswerChosen = 0;
+console.log(incorrectAnswerChosen);
+
 let quizElement = document.getElementById('quiz');
 
 //create a next button
@@ -102,6 +111,14 @@ let questionPopulate= function(){
 let answerChoices = function(){
     //since "answerAppear" was assigned a class name, then we can use it as an array. class attribute acts an array.
     for (let i=0; i < answersAppear.length; i++){
+
+    answersAppear[i].innerText= quizBank[index].answerOptions[i];
+
+    }
+}
+
+answerChoices();
+
         answersAppear[i].innerText= quizBank[index].answerOptions[i];
     }
 }
@@ -110,6 +127,10 @@ let answerChoices = function(){
 
 //Function that will give the  response "correct" when the correct choice is clicked + score property (boolean)
 let responseCheck = function(){
+    
+    console.log("user response = " + quizBank[index].userResponse); 
+    console.log("correct answer = " + quizBank[index].correctAnswer);
+    
     let response = document.createElement('p');
     response.setAttribute('class', 'response');
     quizElement.appendChild(response);
@@ -118,18 +139,43 @@ let responseCheck = function(){
     if (quizBank[index].userResponse === quizBank[index].correctAnswer){
         responseAppear[counter].innerText = "Correct";
         quizBank[index].result = true;
+
+        answersAppear[0].removeEventListener('click',clicked);
+        answersAppear[1].removeEventListener('click',clicked);
+        answersAppear[2].removeEventListener('click',clicked);
+        answersAppear[3].removeEventListener('click',clicked);
+
+        if (responseAppear.innerText = "Correct"){
+            correctAnswerChosen++
+            let score1 = document.getElementById('correct-answers')
+            score1.innerText = correctAnswerChosen++
+            
+        
+        }
     }
     else {
         responseAppear[counter].innerText = "Incorrect";
         quizBank[index].result = false;
+
+        answersAppear[0].removeEventListener('click',clicked);
+        answersAppear[1].removeEventListener('click',clicked);
+        answersAppear[2].removeEventListener('click',clicked);
+        answersAppear[3].removeEventListener('click',clicked);
+
+        if (responseAppear.innerText = "Incorrect"){
+            incorrectAnswerChosen++
+            let score2 = document.getElementById('incorrect-answers')
+            score2.innerText = incorrectAnswerChosen++        
+    
+        }
     }
 
+    counter = 0
     //if there are no more questions to be asked, do not display the "next" button
     if (counter < (quizBank.length - 1)) {
         buttonHolder.appendChild(questionButton);
         questionButton.innerText = 'Next Question';  
     } 
-    //else remove the next button
     else {
         buttonHolder.removeChild(questionButton);
     }
@@ -149,6 +195,10 @@ let nextClicked = function (e) {
     newQuestion.setAttribute('class', 'populateQuestions');
     questionPopulate();
 
+let clicked = function(e) {
+    quizBank[index].userResponse = e.target.innerHTML; 
+    responseCheck();
+
     //let answersElement = document.getElementById('answers');
     let newAnswerChoices = document.createElement('ol');
     questionsAppear[counter].appendChild(newAnswerChoices);
@@ -164,8 +214,16 @@ let nextClicked = function (e) {
     answerEventFunc();
 }
 
+
 //==============FIRING EVENTS + EXECUTION===============
 // creating an code to run when the event click is fired in my HTML
+
+
+answersAppear[0].addEventListener('click',clicked);
+answersAppear[1].addEventListener('click',clicked);
+answersAppear[2].addEventListener('click',clicked);
+answersAppear[3].addEventListener('click',clicked);
+=======
 let answerEventFunc = function() {
     for(let i= (counter * 4); i < answersAppear.length; i++){
         answersAppear[i].addEventListener('click', clicked);

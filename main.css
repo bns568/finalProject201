@@ -11,3 +11,11 @@ button:hover {
     background-color: #4CAF50;
     color: white;
 }
+
+#correct-answers {
+    color: #4CAF50
+}
+
+#incorrect-answers {
+    color: red
+}
