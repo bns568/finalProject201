@@ -77,9 +77,12 @@ questionPopulate();
 let answerChoices = function(){
     //since "answerAppear" was assigned a class name, then we can use it as an array. class attribute acts an array.
     for (let i=0; i < answersAppear.length; i++){
+
     answersAppear[i].innerText= quizBank[index].answerOptions[i];
+
     }
 }
+
 answerChoices();
 
 //==========FUNCTIONS FOR EVENT HANDLERS ================
@@ -92,10 +95,20 @@ let responseCheck = function(){
     if (quizBank[index].userResponse === quizBank[index].correctAnswer){
         responseAppear.innerText = "Correct";
         quizBank[index].result = true;
+
+        answersAppear[0].removeEventListener('click',clicked);
+        answersAppear[1].removeEventListener('click',clicked);
+        answersAppear[2].removeEventListener('click',clicked);
+        answersAppear[3].removeEventListener('click',clicked);
     }
     else {
         responseAppear.innerText = "Incorrect";
         quizBank[index].result = false;
+
+        answersAppear[0].removeEventListener('click',clicked);
+        answersAppear[1].removeEventListener('click',clicked);
+        answersAppear[2].removeEventListener('click',clicked);
+        answersAppear[3].removeEventListener('click',clicked);
     }
 
     //if there are no more questions to be asked, do not display the "next" button
@@ -105,19 +118,25 @@ let responseCheck = function(){
         buttonHolder.appendChild(questionButton);
         questionButton.innerText = 'Next Question';  
     } 
+
 }
 
+
+
+
 //function for not allowing the user to choose an answer more than once. The placement of this may be off, just because at this point of reading the script, you have not gotten to the event yet. 
-let oneChoice =function(){
-    answersAppear[0].removeEventListener('click',clicked)
-    answersAppear[1].removeEventListener('click',clicked)
-    answersAppear[2].removeEventListener('click',clicked)
-    answersAppear[3].removeEventListener('click',clicked)
-}
+// let oneChoice =function(){
+    // answersAppear[0].removeEventListener('click',clicked)
+    // answersAppear[1].removeEventListener('click',clicked)
+    // answersAppear[2].removeEventListener('click',clicked)
+    // answersAppear[3].removeEventListener('click',clicked)
+// }
 
 //========EVENT HANDLERS=======
 
 //Event handler for correct response
+
+
 
 let clicked = function(e) {
     quizBank[index].userResponse = e.target.innerHTML; 
