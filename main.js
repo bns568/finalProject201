@@ -155,7 +155,8 @@ let clicked = function(e) {
 }
 
 let nextClicked = function (e) {
-    counter++; 
+    counter++;
+
     let quizElement = document.getElementById('quiz');
     let newQuestion = document.createElement('p');
     quizElement.appendChild(newQuestion);
@@ -168,11 +169,11 @@ let nextClicked = function (e) {
     newAnswerChoices.setAttribute('class', 'answerChoice');
     newAnswerChoices.setAttribute('type', 'a');
     
-    for (let i=0; i < quizBank[counter].answerOptions.length; i++){
+    for (let i=0; i < quizBank[index].answerOptions.length; i++){
         let newAnswer = document.createElement('li');
         newAnswerChoices.appendChild(newAnswer);
         newAnswer.setAttribute('class', 'answerChoice');
-        newAnswer.innerText = quizBank[counter].answerOptions[i];
+        newAnswer.innerText = quizBank[index].answerOptions[i];
     }
 }
 
