@@ -76,11 +76,14 @@ quizBank.push(q01, q02, q03, q04, q05, q11, q12, q21, q22, q23, q31, q32, q33, q
 //The "index" variable, declared above, will keep track of what question we are on, and we will pass this variable whereever we need to pass an index to the questions array
 
 function indexFunc() {
-    for(let i=0; i < quizBank.length; i++){
-        index = Math.floor(Math.random() * quizBank.length);
-    }
+    index = Math.floor(Math.random() * quizBank.length);
     return index;
 } 
+
+function randomAnswer() {
+    aIndex = Math.floor(Math.random() * quizBank[index].answerOptions.length);
+    return aIndex;
+}
 
 //=====POPULATING DOM DYNAMICALLY=====
 
@@ -91,7 +94,7 @@ let questionPopulate= function(){
         while (quizBank[index].displayed) {
             index = indexFunc();
         }
-        questionsAppear[counter].innerHTML = quizBank[index].question;
+        questionsAppear[counter].innerHTML = (counter + 1) + ". " + quizBank[index].question;
         quizBank[index].displayed = true;
         questionsAppear = document.getElementsByClassName('populateQuestions');
 }
@@ -154,12 +157,25 @@ let nextClicked = function (e) {
     questionsAppear[counter].appendChild(newAnswerChoices);
     newAnswerChoices.setAttribute('class', 'answerChoice');
     newAnswerChoices.setAttribute('type', 'a');
+
+    let answerArray = [];
     
     for (let i=0; i < quizBank[index].answerOptions.length; i++){
         let newAnswer = document.createElement('li');
         newAnswerChoices.appendChild(newAnswer);
         newAnswer.setAttribute('class', 'answerChoice');
-        newAnswer.innerText = quizBank[index].answerOptions[i];
+
+        let j = randomAnswer(); 
+        
+        for (let k = 0; k < answerArray.length; k++) {
+            while (j == answerArray[k]) {
+                j = randomAnswer();
+            }
+        }
+
+        answerArray.push(j);
+
+        newAnswer.innerText = quizBank[index].answerOptions[j];
     }
     answerEventFunc();
 }
