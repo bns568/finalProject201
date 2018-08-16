@@ -83,7 +83,7 @@ testBank.push(q01, q02, q03, q04, q05, q11, q12, q21, q22, q23, q31, q32, q33, q
 // then attach an event handler
 let topicChoice1 = function(e) {
     for (z = 0; z < testBank.length; z++) {
-        if (document.getElementById('functions').id === testBank[z].topic['functions']) {
+        if (document.getElementById('functions').id === testBank[z].topic) {
             quizBank.push(testBank[z])
             console.log(quizBank)
         }
@@ -96,7 +96,7 @@ let topicChoice1 = function(e) {
 
 let topicChoice2 = function(e) {
     for (z = 0; z < testBank.length; z++) {
-        if (document.getElementById('loops').id === testBank[z].topic['loops']) {
+        if (document.getElementById('loops').id === testBank[z].topic) {
             quizBank.push(testBank[z])
         }
     }
@@ -108,7 +108,7 @@ let topicChoice2 = function(e) {
 
 let topicChoice3 = function(e) {
     for (z = 0; z < testBank.length; z++) {
-        if (document.getElementById('objects').id === testBank[z].topic['objects']) {
+        if (document.getElementById('objects').id === testBank[z].topic) {
             quizBank.push(testBank[z])
         }
     }
@@ -120,7 +120,7 @@ let topicChoice3 = function(e) {
 
 let topicChoice4 = function(e) {
     for (z = 0; z < testBank.length; z++) {
-        if (document.getElementById('DOM').id === testBank[z].topic['DOM']) {
+        if (document.getElementById('DOM').id === testBank[z].topic) {
             quizBank.push(testBank[z])
         }
     }
@@ -132,7 +132,7 @@ let topicChoice4 = function(e) {
 
 let topicChoice5 = function(e) {
     for (z = 0; z < testBank.length; z++) {
-        if (document.getElementById('localStorage').id === testBank[z].topic['localStorage']) {
+        if (document.getElementById('localStorage').id === testBank[z].topic) {
             quizBank.push(testBank[z])
         }
     }
@@ -257,4 +257,3 @@ let removeEventFunc = function() {
 }
 
 questionButton.addEventListener('click', nextClicked)
-
