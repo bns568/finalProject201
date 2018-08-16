@@ -19,3 +19,13 @@ button:hover {
 #incorrect-answers {
     color: red
 }
+
+#correct {
+
+    color: #4CAF50
+}
+
+#incorrect {
+
+    color: red
+}

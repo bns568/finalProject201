@@ -13,6 +13,7 @@ console.log(answersAppear)
 //creating a variable that will hold the HTML element which displays response to user after they click
 let responseAppear = document.getElementById('response')
 
+
 //creating a variable that will hold the index that will track which questions we ar on
 let index=0;
 
@@ -107,9 +108,9 @@ let responseCheck = function(){
             let score1 = document.getElementById('correct-answers')
             score1.innerText = correctAnswerChosen++
             
-        
         }
     }
+
     else {
         responseAppear.innerText = "Incorrect";
         quizBank[index].result = false;
