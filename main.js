@@ -1,5 +1,6 @@
 //=============GLOBAL VARIABLES DECLARATION & ASSIGNMENT============
 //creating an array that stores the questions for the topic 'functions'
+let testBank = [];
 let quizBank= [];
 //counts the number of questions we ask, starting at zero for an array
 let counter = 0;
@@ -20,6 +21,14 @@ let quizElement = document.getElementById('quiz');
 //create a next button
 let buttonHolder = document.getElementById('buttonHolder');
 let questionButton= document.createElement('button');
+
+//===TOPIC SELECTOR==
+
+let elTopic1 = document.getElementById('functions')
+let elTopic2 = document.getElementById('loops')
+let elTopic3 = document.getElementById('objects')
+let elTopic4 = document.getElementById('DOM')
+let elTopic5 = document.getElementById('localStorage')
 
 //===========OBJECT CONSTRUCTOR & INSTANCES============
 
@@ -69,7 +78,76 @@ q34 = new Question('DOM', 'Methods that find elements in the DOM are called what
 q35 = new Question('DOM', 'A collection of nodes is known as a _______?', ['nodeList', 'nodeArray', 'nodeQuery', 'nodeScript'], null, null) ;
 
 //pushing the questions of the function questions objects into an array that holds all the questions for the function topic
-quizBank.push(q01, q02, q03, q04, q05, q11, q12, q21, q22, q23, q31, q32, q33, q34, q35);
+testBank.push(q01, q02, q03, q04, q05, q11, q12, q21, q22, q23, q31, q32, q33, q34, q35);
+
+// then attach an event handler
+let topicChoice1 = function(e) {
+    for (z = 0; z < testBank.length; z++) {
+        if (document.getElementById('functions').id === testBank[z].topic['functions']) {
+            quizBank.push(testBank[z])
+            console.log(quizBank)
+        }
+    }
+    
+    questionPopulate();
+    answerChoices();
+    answerEventFunc(); 
+}
+
+let topicChoice2 = function(e) {
+    for (z = 0; z < testBank.length; z++) {
+        if (document.getElementById('loops').id === testBank[z].topic['loops']) {
+            quizBank.push(testBank[z])
+        }
+    }
+
+    questionPopulate();
+    answerChoices();
+    answerEventFunc(); 
+}
+
+let topicChoice3 = function(e) {
+    for (z = 0; z < testBank.length; z++) {
+        if (document.getElementById('objects').id === testBank[z].topic['objects']) {
+            quizBank.push(testBank[z])
+        }
+    }
+
+    questionPopulate();
+    answerChoices();
+    answerEventFunc(); 
+}
+
+let topicChoice4 = function(e) {
+    for (z = 0; z < testBank.length; z++) {
+        if (document.getElementById('DOM').id === testBank[z].topic['DOM']) {
+            quizBank.push(testBank[z])
+        }
+    }
+
+    questionPopulate();
+    answerChoices();
+    answerEventFunc(); 
+}
+
+let topicChoice5 = function(e) {
+    for (z = 0; z < testBank.length; z++) {
+        if (document.getElementById('localStorage').id === testBank[z].topic['localStorage']) {
+            quizBank.push(testBank[z])
+        }
+    }
+
+    questionPopulate();
+    answerChoices();
+    answerEventFunc(); 
+}
+
+// then attach an event listener
+elTopic1.addEventListener('click', topicChoice1) ;
+elTopic2.addEventListener('click', topicChoice2) ;
+elTopic3.addEventListener('click', topicChoice3) ;
+elTopic4.addEventListener('click', topicChoice4) ;
+elTopic5.addEventListener('click', topicChoice5) ;
 
 //=========Index for tracking what questions we are on===============
 
@@ -180,6 +258,3 @@ let removeEventFunc = function() {
 
 questionButton.addEventListener('click', nextClicked)
 
-questionPopulate();
-answerChoices();
-answerEventFunc();
