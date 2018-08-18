@@ -1,31 +1,86 @@
+body, html {
+    font-family: sans-serif;
+}
+
+/*YES I KNOW...BAD FOR ACCESBILITY BUT I. DONT. CARE. */
+textarea, select, input, button { outline: none; }
+
+.quizSelect {
+    padding: 5vw;
+    background: white;
+    margin: 20px 15px 30px 15px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+    -moz-box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+    box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+}
+
+.title {
+    letter-spacing: -1px;
+}
+
+.title span {
+    font-weight: 100;
+}
+
+#topics{
+    margin: 2px 0;
+    color: grey;
+}
 
 button {
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     width: 60px;
-    height: 32px;
-
-}
-
-button:hover {
+    height: 42px;
+    font-size: .8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 90px;
+    min-width: 130px;
+    padding-left: 20px;
+    padding-right: 20px;
+ }
+ 
+ button:hover {
     background-color: #4CAF50;
     color: white;
-}
-
-#correct-answers {
+ }
+ 
+ .correct {
     color: #4CAF50
-}
-
-#incorrect-answers {
+ }
+ 
+ .incorrect {
     color: red
-}
+ }
 
-#correct {
+ .response {
+     font-weight: bold;
+ }
 
-    color: #4CAF50
-}
+ #score {
+     color: green;
+ }
 
-#incorrect {
+ .answerChoice {
+    cursor: pointer;
+ }
 
-    color: red
+ .topicList {
+     padding-left: 0px;
+ }
+
+ .topicList input {
+    margin: 8px;
+ }
+
+ input[type=checkbox] {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.5); /* IE */
+    -moz-transform: scale(1.5); /* FF */
+    -webkit-transform: scale(1.5); /* Safari and Chrome */
+    -o-transform: scale(1.5); /* Opera */
+    padding: 15px;
 }

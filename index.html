@@ -8,19 +8,64 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
-        <h1 class="title">Coding Quiz</h1>
-        <p id = "populateQuestions"></p>
-            <ul></ul>
-            <!--- I recall Zach mentioning class attributes acts like an array, so it may make more sense to give the lis a class name instead of multiple ids--> 
-                <li class="answerChoice"></li>
-                <li class="answerChoice"></li>
-                <li class="answerChoice"></li>
-                <li class="answerChoice"></li>
+    <div class="quizSelect">
+        <h1 class= "title">Coding <span>Quiz</span></h1>
+        <p id = "topics">Please select the topics you are interested in:
+            <ul class="topicList">
+                <input id = "functions" type = "checkbox">
+                    <label for = "functions">Functions</label><br>
+                <input id = "loops" type = "checkbox"/>
+                    <label for = "loops">Loops</label><br>
+                <input id = "objects" type = "checkbox">
+                    <label for = "objects">Objects</label><br>
+                <input id = "DOM" type = "checkbox">
+                    <label for = "DOM">DOM</label><br>
+                <input id = "localStorage" type = "checkbox">
+                    <label for = "localStorage">Local Storage</label><br>
+            </ul>
+            <button id="dataSubmit" type='submit'>Submit</button>
+        </p>
+    </div>
 
-        <p id= "response"></p>
-        <!-- <p id= "incorrect-response"></p> -->
+        <span id="quiz"></span>
 
         <p id= "buttonHolder"></p>
+
+        <b><span id = 'score'></span></b>
+    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="main.js"></script>
+
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+        <h1 class="title">Coding Quiz</h1>
+        <p id = "populateQuestions"></p>
+            <ul></ul> -->
+            <!--- I recall Zach mentioning class attributes acts like an array, so it may make more sense to give the lis a class name instead of multiple ids--> 
+                <!-- <li class="answerChoice"></li>
+                <li class="answerChoice"></li>
+                <li class="answerChoice"></li>
+                <li class="answerChoice"></li> -->
+
+        <!-- <p id= "response"></p> -->
+        <!-- <p id= "incorrect-response"></p> -->
+
+        <!-- <p id= "buttonHolder"></p>
 
         <div>
             <p>Correct Answers = <b id = 'correct-answers'></b></p>
@@ -28,10 +73,10 @@
                 
         </div>
     
-        <!--<button type="button"></button>-->
+        <button type="button"></button> -->
 
-</body>
+<!-- </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="main.js"></script>
 
-</html>
+</html> -->
