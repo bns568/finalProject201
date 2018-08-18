@@ -22,6 +22,9 @@ let responseAppear = document.getElementsByClassName('response');
 
 let quizElement = document.getElementById('quiz');
 
+//necessary in order to make it pretty- hence the dripping sarcasm
+let stupidDiv;
+
 let elTopic1 = document.getElementById('functions')
 let elTopic2 = document.getElementById('loops')
 let elTopic3 = document.getElementById('objects')
@@ -95,14 +98,23 @@ function randomAnswer() {
     return aIndex;
 }
 
+function scrollToBottom() {
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
 //=====POPULATING DOM DYNAMICALLY=====
 
 //creating a function that populates question on the html page
 let questionPopulate= function(){
         index = indexFunc();
 
+        //necessary in order to make it pretty- hence the dripping sarcasm
+        stupidDiv = document.createElement('div');
+        quizElement.appendChild(stupidDiv);
+        stupidDiv.setAttribute('class', 'questionCard');
+
         let newQuestion = document.createElement('p');
-        quizElement.appendChild(newQuestion);
+        stupidDiv.appendChild(newQuestion);
         newQuestion.setAttribute('class', 'populateQuestions');
 
         //prevents repeated questions
@@ -120,8 +132,8 @@ let questionPopulate= function(){
 let answerChoices = function(){
     //create an ordered list
     let newAnswerChoices = document.createElement('ol');
-    quizElement.appendChild(newAnswerChoices);
-    newAnswerChoices.setAttribute('class', 'answerChoice');
+    stupidDiv.appendChild(newAnswerChoices);
+    newAnswerChoices.setAttribute('class', 'answerChoiceOL');
     newAnswerChoices.setAttribute('type', 'a');
 
     let answerArray = [];
@@ -197,6 +209,7 @@ let topicSubmit = function(e) {
     questionPopulate();
     answerChoices();
     answerEventFunc();
+    scrollToBottom();
 }
 
 //==========FUNCTIONS FOR EVENT HANDLERS ================
@@ -205,18 +218,18 @@ let topicSubmit = function(e) {
 let responseCheck = function(){
     let response = document.createElement('p');
     response.setAttribute('class', 'response');
-    quizElement.appendChild(response);
+    stupidDiv.appendChild(response);
     responseAppear = document.getElementsByClassName('response');
 
     if (quizBank[index].userResponse === quizBank[index].correctAnswer){
-        response.setAttribute('style', 'color: green');
+        response.setAttribute('style', 'background: #00cc66');
         responseAppear[counter].innerText = "Correct";
         quizBank[index].result = true;
         correctAnswerChosen++;
     }
     
     else {
-        response.setAttribute('style', 'color: red');
+        response.setAttribute('style', 'background: #ff4d4d');
         responseAppear[counter].innerText = "Incorrect";
         quizBank[index].result = false;
         incorrectAnswerChosen++;
@@ -225,7 +238,7 @@ let responseCheck = function(){
     //if there are no more questions to be asked, do not display the "next" button
     if (counter < (quizBank.length - 1)) {
         buttonHolder.appendChild(questionButton);
-        questionButton.innerText = 'Next Question'; 
+        questionButton.innerText = 'Next'; 
     } 
     //else remove the next button
     else {
@@ -233,6 +246,8 @@ let responseCheck = function(){
         let elScore = document.getElementById('score');
         elScore.innerHTML = "Score: " + correctAnswerChosen + " / " + (correctAnswerChosen + incorrectAnswerChosen);
     }
+
+    scrollToBottom();
 }
 
 let clicked = function(e) {
@@ -247,6 +262,7 @@ let nextClicked = function (e) {
     questionPopulate();
     answerChoices();
     answerEventFunc();
+    scrollToBottom();
 }
 
 //==============FIRING EVENTS + EXECUTION===============
