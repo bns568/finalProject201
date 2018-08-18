@@ -49,6 +49,14 @@ let Question = function(topic, question, answerOptions, userResponse, questionRe
     this.questionResult = questionResult;
 }
 
+
+if(localStorage.questObject) {
+    quizBank = JSON.parse(localStorage.getItem("questObject"))
+}
+
+else {
+
+
 q01 = new Question('functions', 'To execute the code block in a function, we do what?', ['Invoke the function','Define the function','Construct the function','Declare the function'], null, null) ;
 
 q02 = new Question('functions', 'An invoked function is the ________ thing the JavaScript interpreter executes when a page loads.', [' first','final','second','third'], null, null) ;
@@ -94,6 +102,10 @@ q43 = new Question('localStorage', 'If ' + '<em>age</em>' + ' is a key, how can 
 q44 = new Question('localStorage', 'How do you remove stored items from your browser?', ['localStorage.clear()','clear.localStorage', 'clear()', 'local.storage.clear()'], null, null) ;
 q45 = new Question('localStorage', "How  do you remove this key/value pair: 'color','blue'?", ["removeItem('color')",'remove.color', "removeItem('color',12)", 'removeItem.color.blue'], null, null) ;
 
+//pushing the questions of the function questions objects into an array that holds all the questions for the function topic
+testBank.push(q01, q02, q03, q04, q05, q11, q12, q13, q14, q15, q21, q22, q23, q24, q25, q31, q32, q33, q34, q35, q41, q42, q43,q44,q45);
+
+}
 //=========Index for tracking what questions we are on===============
 
 //The "index" variable, declared above, will keep track of what question we are on, and we will pass this variable whereever we need to pass an index to the questions array
@@ -161,8 +173,6 @@ let answerChoices = function(){
     //}
 }
 
-//pushing the questions of the function questions objects into an array that holds all the questions for the function topic
-testBank.push(q01, q02, q03, q04, q05, q11, q12, q13, q14, q15, q21, q22, q23, q24, q25, q31, q32, q33, q34, q35, q41, q42, q43,q44,q45);
 
 // then attach an event handler
 
@@ -278,6 +288,8 @@ let removeEventFunc = function() {
 
 questionButton.addEventListener('click', nextClicked)
 
+
+
 // attach event listeners to topics
 elTopic1.addEventListener('click', topicChoice1);
 elTopic2.addEventListener('click', topicChoice2);
@@ -292,3 +304,7 @@ if (quizBank.length != 0){
 answerEventFunc();
 
 }
+
+localStorage.setItem("questObject", JSON.stringify(quizBank))
+
+console.log(quizBank);
