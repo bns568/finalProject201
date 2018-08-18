@@ -1,13 +1,28 @@
-
 button {
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     width: 60px;
     height: 32px;
-
-}
-
-button:hover {
+ 
+ }
+ 
+ button:hover {
     background-color: #4CAF50;
     color: white;
-}
+ }
+ 
+ #correct-answers {
+    color: #4CAF50
+ }
+ 
+ #incorrect-answers {
+    color: red
+ }
+
+ .response {
+     font-weight: bold;
+ }
+
+ #score {
+     color: green;
+ }

@@ -5,6 +5,11 @@ let quizBank= [];
 let counter = 0;
 //tracks index of the quizBank array 
 let index=0;
+// create varibales that stores an array boolean values (true or false) when user clicks on answer choice
+let correctAnswerChosen = 0;
+let incorrectAnswerChosen = 0;
+
+let testBank = [];
 
 //assigning my HTLML element to a variable that holds the spot for the question
 let questionsAppear = document.getElementsByClassName('populateQuestions');
@@ -17,6 +22,13 @@ let responseAppear = document.getElementsByClassName('response');
 
 let quizElement = document.getElementById('quiz');
 
+let elTopic1 = document.getElementById('functions')
+let elTopic2 = document.getElementById('loops')
+let elTopic3 = document.getElementById('objects')
+let elTopic4 = document.getElementById('DOM')
+let elTopic5 = document.getElementById('localStorage')
+let elSubmitTopic = document.getElementById('dataSubmit');
+
 //create a next button
 let buttonHolder = document.getElementById('buttonHolder');
 let questionButton= document.createElement('button');
@@ -28,7 +40,6 @@ let Question = function(topic, question, answerOptions, userResponse, questionRe
 {
     this.topic = topic,
     this.question = question,
-    // this.userAnswers = userAnswers --
     //answerOptions will be an array
     this.answerOptions = answerOptions,
     this.correctAnswer = this.answerOptions[0],
@@ -68,8 +79,7 @@ q34 = new Question('DOM', 'Methods that find elements in the DOM are called what
 
 q35 = new Question('DOM', 'A collection of nodes is known as a _______?', ['nodeList', 'nodeArray', 'nodeQuery', 'nodeScript'], null, null) ;
 
-//pushing the questions of the function questions objects into an array that holds all the questions for the function topic
-quizBank.push(q01, q02, q03, q04, q05, q11, q12, q21, q22, q23, q31, q32, q33, q34, q35);
+q41 = new Question('localStorage', 'Harold didnt create a local storage questions', ['na','na', 'na', 'na'], null, null) ;
 
 //=========Index for tracking what questions we are on===============
 
@@ -90,23 +100,103 @@ function randomAnswer() {
 //creating a function that populates question on the html page
 let questionPopulate= function(){
         index = indexFunc(); 
+
+        let newQuestion = document.createElement('p');
+        quizElement.appendChild(newQuestion);
+        newQuestion.setAttribute('class', 'populateQuestions');
+
         //prevents repeated questions
         while (quizBank[index].displayed) {
             index = indexFunc();
         }
         questionsAppear[counter].innerHTML = (counter + 1) + ". " + quizBank[index].question;
         quizBank[index].displayed = true;
-        questionsAppear = document.getElementsByClassName('populateQuestions');
+        //questionsAppear = document.getElementsByClassName('populateQuestions');
 }
 
 //Placeholder for creating a function to randomize the answer options each time they appear (not part of the MVP)
 
 //creating a function that will populate the "answer options" property
 let answerChoices = function(){
-    //since "answerAppear" was assigned a class name, then we can use it as an array. class attribute acts an array.
-    for (let i=0; i < answersAppear.length; i++){
-        answersAppear[i].innerText= quizBank[index].answerOptions[i];
+    //create an ordered list
+    let newAnswerChoices = document.createElement('ol');
+    quizElement.appendChild(newAnswerChoices);
+    newAnswerChoices.setAttribute('class', 'answerChoice');
+    newAnswerChoices.setAttribute('type', 'a');
+
+    let answerArray = [];
+
+    //append list items
+    for (let i=0; i < quizBank[index].answerOptions.length; i++){
+        let newAnswer = document.createElement('li');
+        newAnswerChoices.appendChild(newAnswer);
+        newAnswer.setAttribute('class', 'answerChoice');
+
+        let j = randomAnswer(); 
+            
+        for (let k = 0; k < answerArray.length; k++) {
+            while (j == answerArray[k]) {
+                j = randomAnswer();
+            }
+        }
+        answerArray.push(j);
+        newAnswer.innerText = quizBank[index].answerOptions[j];
     }
+
+    //for (let i=0; i < answersAppear.length; i++){
+    //    answersAppear[i].innerText= quizBank[index].answerOptions[i];
+    //}
+}
+
+//pushing the questions of the function questions objects into an array that holds all the questions for the function topic
+testBank.push(q01, q02, q03, q04, q05, q11, q12, q21, q22, q23, q31, q32, q33, q34, q35, q41);
+
+// then attach an event handler
+
+let topicChoice1 = function(e) {
+   for (z = 0; z < testBank.length; z++) {
+       if (document.getElementById('functions').id === testBank[z].topic) {
+           quizBank.push(testBank[z])
+       }
+   }
+}
+
+let topicChoice2 = function(e) {
+   for (z = 0; z < testBank.length; z++) {
+       if (document.getElementById('loops').id === testBank[z].topic) {
+           quizBank.push(testBank[z])
+       }
+   }
+}
+
+let topicChoice3 = function(e) {
+   for (z = 0; z < testBank.length; z++) {
+       if (document.getElementById('objects').id === testBank[z].topic) {
+           quizBank.push(testBank[z])
+       }
+   }
+}
+
+let topicChoice4 = function(e) {
+   for (z = 0; z < testBank.length; z++) {
+       if (document.getElementById('DOM').id === testBank[z].topic) {
+           quizBank.push(testBank[z])
+       }
+   }
+}
+
+let topicChoice5 = function(e) {
+   for (z = 0; z < testBank.length; z++) {
+       if (document.getElementById('localStorage').id === testBank[z].topic) {
+           quizBank.push(testBank[z])
+       }
+   }
+}
+
+let topicSubmit = function(e) {
+    questionPopulate();
+    answerChoices();
+    answerEventFunc();
 }
 
 //==========FUNCTIONS FOR EVENT HANDLERS ================
@@ -115,26 +205,32 @@ let answerChoices = function(){
 let responseCheck = function(){
     let response = document.createElement('p');
     response.setAttribute('class', 'response');
+    console.log("hi")
     quizElement.appendChild(response);
     responseAppear = document.getElementsByClassName('response');
 
     if (quizBank[index].userResponse === quizBank[index].correctAnswer){
         responseAppear[counter].innerText = "Correct";
         quizBank[index].result = true;
+        correctAnswerChosen++;
     }
+    
     else {
         responseAppear[counter].innerText = "Incorrect";
         quizBank[index].result = false;
+        incorrectAnswerChosen++;
     }
 
     //if there are no more questions to be asked, do not display the "next" button
     if (counter < (quizBank.length - 1)) {
         buttonHolder.appendChild(questionButton);
-        questionButton.innerText = 'Next Question';  
+        questionButton.innerText = 'Next Question'; 
     } 
     //else remove the next button
     else {
         buttonHolder.removeChild(questionButton);
+        let elScore = document.getElementById('score');
+        elScore.innerHTML = "Score: " + correctAnswerChosen + " / " + (correctAnswerChosen + incorrectAnswerChosen);
     }
 }
 
@@ -147,36 +243,8 @@ let clicked = function(e) {
 let nextClicked = function (e) {
     counter++;
 
-    let newQuestion = document.createElement('p');
-    quizElement.appendChild(newQuestion);
-    newQuestion.setAttribute('class', 'populateQuestions');
     questionPopulate();
-
-    //let answersElement = document.getElementById('answers');
-    let newAnswerChoices = document.createElement('ol');
-    questionsAppear[counter].appendChild(newAnswerChoices);
-    newAnswerChoices.setAttribute('class', 'answerChoice');
-    newAnswerChoices.setAttribute('type', 'a');
-
-    let answerArray = [];
-    
-    for (let i=0; i < quizBank[index].answerOptions.length; i++){
-        let newAnswer = document.createElement('li');
-        newAnswerChoices.appendChild(newAnswer);
-        newAnswer.setAttribute('class', 'answerChoice');
-
-        let j = randomAnswer(); 
-        
-        for (let k = 0; k < answerArray.length; k++) {
-            while (j == answerArray[k]) {
-                j = randomAnswer();
-            }
-        }
-
-        answerArray.push(j);
-
-        newAnswer.innerText = quizBank[index].answerOptions[j];
-    }
+    answerChoices();
     answerEventFunc();
 }
 
@@ -196,6 +264,16 @@ let removeEventFunc = function() {
 
 questionButton.addEventListener('click', nextClicked)
 
-questionPopulate();
-answerChoices();
-answerEventFunc();
+// attach event listeners to topics
+elTopic1.addEventListener('click', topicChoice1);
+elTopic2.addEventListener('click', topicChoice2);
+elTopic3.addEventListener('click', topicChoice3);
+elTopic4.addEventListener('click', topicChoice4);
+elTopic5.addEventListener('click', topicChoice5);
+elSubmitTopic.addEventListener('click', topicSubmit);
+
+if (quizBank.length != 0){
+    questionPopulate();
+    answerChoices();
+    answerEventFunc();
+}

@@ -9,21 +9,24 @@
 </head>
 <body>
         <h1 class= "title">Coding Quiz</h1>
-        <span id="quiz">
-            <p class= "populateQuestions"></p>
-                <ol id = "answers" type = "a">
-                    <li class="answerChoice"></li>
-                    <li class="answerChoice"></li>
-                    <li class="answerChoice"></li>
-                    <li class="answerChoice"></li> 
-                </ol> 
-            <p id= "response"></p>         
-        </span>
+
+        <h1 id = "topicHeading">Topic Areas</h1>
+        <p id = "topics">Please select the topics you are interested in being quizzed on below
+            <ul>
+                <input id = "functions" type = "checkbox">Functions <br>
+                <input id = "loops" type = "checkbox"/>Loops<br>
+                <input id = "objects" type = "checkbox">Objects<br>
+                <input id = "DOM" type = "checkbox">The DOM<br>
+                <input id = "localStorage" type = "checkbox">Local Storage<br>
+            </ul>
+            <button id="dataSubmit" type='submit'>Submit</button>
+        </p>
+
+        <span id="quiz"></span>
 
         <p id= "buttonHolder"></p>
-    
-        <!--<button type="button"></button>-->
 
+        <b><span id = 'score'></span></b>
     
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
