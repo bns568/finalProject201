@@ -99,7 +99,7 @@ function randomAnswer() {
 
 //creating a function that populates question on the html page
 let questionPopulate= function(){
-        index = indexFunc(); 
+        index = indexFunc();
 
         let newQuestion = document.createElement('p');
         quizElement.appendChild(newQuestion);
@@ -205,17 +205,18 @@ let topicSubmit = function(e) {
 let responseCheck = function(){
     let response = document.createElement('p');
     response.setAttribute('class', 'response');
-    console.log("hi")
     quizElement.appendChild(response);
     responseAppear = document.getElementsByClassName('response');
 
     if (quizBank[index].userResponse === quizBank[index].correctAnswer){
+        response.setAttribute('style', 'color: green');
         responseAppear[counter].innerText = "Correct";
         quizBank[index].result = true;
         correctAnswerChosen++;
     }
     
     else {
+        response.setAttribute('style', 'color: red');
         responseAppear[counter].innerText = "Incorrect";
         quizBank[index].result = false;
         incorrectAnswerChosen++;
