@@ -66,11 +66,22 @@ q11 = new Question('loops', 'Which of the following is not a loop type?', ['do f
 
 q12 = new Question('loops', 'Loops check a ______?', ['condition', 'variable', 'function', 'method'], null, null) ;
 
+q13 = new Question('loops', 'If "5" === 5, it returns a ____ value?', ['false', 'true', 'null', 'NaN'], null, null) ;
+
+q14 = new Question('loops', 'If the length of an array is 6, which of the following' + '<b><i>for loop</b></i>' + 'is correct?', ['for (let i=0; i<6; i++)', 'for(let i=1; i>6; i++)', 'for(let i=0; i>5); i++', 'for(let i=1; i>6; i+-)'], null, null) ;
+
+q15 = new Question('loops', 'What is the differenct between a ' + '<b><i>for loop</b></i>' + ' and a ' + '<b><i>while loop</b></i>' + '?', ['a ' + 'for loop' + ' runs a code a specific number of times and a ' + 'while loop' + ' is used when you do not know the code should run' , 'no difference', 'while loop' + ' is less common', 'for loop' + ' is widely used'], null, null) ;
+
 q21 = new Question('objects', 'In an object, variables become known as _______?', ['properties', 'scripts', 'keys', 'values'], null, null) ;
 
 q22 = new Question('objects', 'In an object, functions become known as _______?', ['methods', 'scripts', 'keys', 'values'], null, null) ;
 
 q23 = new Question('objects', 'An object constructor provides what main advantage?', ['Multiple instantiations', 'A single instantiation', 'Defined keys', 'Defined values'], null, null) ;
+
+q24 = new Question('objects', 'What will ' + '<strong>math.round()</strong>' + ' change 4.39 to?', ['4', '4.5', '5', '4.8'], null, null) ;
+
+q25 = new Question('objects', 'How do you delete the property ' + '<em>pool</em>' + ' from this object: let house = {windows:12, rooms:2, pool:1};', ['delete house.pool', 'delete pool.1', 'delete pool', 'delete pool.house'], null, null) ;
+
 
 q31 = new Question('DOM', 'The DOM specifies the way in which a page is modeled using a _______?', ['DOM tree', 'DOM chart', 'DOM score', 'DOM loop'], null, null) ;
 
@@ -82,7 +93,16 @@ q34 = new Question('DOM', 'Methods that find elements in the DOM are called what
 
 q35 = new Question('DOM', 'A collection of nodes is known as a _______?', ['nodeList', 'nodeArray', 'nodeQuery', 'nodeScript'], null, null) ;
 
-q41 = new Question('localStorage', 'Harold didnt create a local storage questions', ['na','na', 'na', 'na'], null, null) ;
+q41 = new Question('localStorage', 'The value in a storage object is always a _______.', ['string','boolean', 'number', 'variable'], null, null) ;
+
+q42 = new Question('localStorage', 'When saving an item into local storage, what comes after' + ' <strong>localStorage.setItem</strong>' +'?', ["('weight', '15')","'weight', '15'", "('weight', 15)", "(weight, '15')"], null, null) ;
+
+q43 = new Question('localStorage', 'If ' + '<em>age</em>' + ' is a key, how can we retrieve its value on console?', ['getItem(age)','getItem.age', 'getItem[age]', 'itemGet()'], null, null) ;
+
+q44 = new Question('localStorage', 'How do you remove stored items from your browser?', ['localStorage.clear()','clear.localStorage', 'clear()', 'local.storage.clear()'], null, null) ;
+
+q45 = new Question('localStorage', "How  do you remove this key/value pair: 'color','blue'?", ["removeItem('color')",'remove.color', "removeItem('color',12)", 'removeItem.color.blue'], null, null) ;
+
 
 //=========Index for tracking what questions we are on===============
 
@@ -161,7 +181,7 @@ let answerChoices = function(){
 }
 
 //pushing the questions of the function questions objects into an array that holds all the questions for the function topic
-testBank.push(q01, q02, q03, q04, q05, q11, q12, q21, q22, q23, q31, q32, q33, q34, q35, q41);
+testBank.push(q01, q02, q03, q04, q05, q11, q12, q13, q14, q15, q21, q22, q23, q24, q25, q31, q32, q33, q34, q35, q41, q42, q43, q44, q45);
 
 // then attach an event handler
 
