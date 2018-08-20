@@ -38,6 +38,19 @@ let questionButton= document.createElement('button');
 
 //===========OBJECT CONSTRUCTOR & INSTANCES============
 
+let Topics = {
+    functionsCorrect: 0,
+    functionsTotal: 0,
+    loopsCorrect: 0,
+    loopsTotal: 0, 
+    objectsCorrect: 0,
+    objectsTotal: 0, 
+    DOMCorrect: 0,
+    DOMTotal: 0, 
+    localStorageCorrect: 0,
+    localStorageTotal: 0, 
+}
+
 //creating an object constructor with properties and method for the questions
 let Question = function(topic, question, answerOptions, userResponse, questionResult)
 {
@@ -81,7 +94,6 @@ q23 = new Question('objects', 'An object constructor provides what main advantag
 q24 = new Question('objects', 'What will ' + '<strong>math.round()</strong>' + ' change 4.39 to?', ['4', '4.5', '5', '4.8'], null, null) ;
 
 q25 = new Question('objects', 'How do you delete the property ' + '<em>pool</em>' + ' from this object: let house = {windows:12, rooms:2, pool:1};', ['delete house.pool', 'delete pool.1', 'delete pool', 'delete pool.house'], null, null) ;
-
 
 q31 = new Question('DOM', 'The DOM specifies the way in which a page is modeled using a _______?', ['DOM tree', 'DOM chart', 'DOM score', 'DOM loop'], null, null) ;
 
@@ -190,7 +202,8 @@ let topicChoice1 = function(e) {
    for (z = 0; z < testBank.length; z++) {
        if (document.getElementById('functions').id === testBank[z].topic) {
            quizBank.push(testBank[z])
-       }
+           Topics.functionsTotal++;
+       }  
    }
 }
 
@@ -198,6 +211,7 @@ let topicChoice2 = function(e) {
    for (z = 0; z < testBank.length; z++) {
        if (document.getElementById('loops').id === testBank[z].topic) {
            quizBank.push(testBank[z])
+           Topics.loopsTotal++;
        }
    }
 }
@@ -206,6 +220,7 @@ let topicChoice3 = function(e) {
    for (z = 0; z < testBank.length; z++) {
        if (document.getElementById('objects').id === testBank[z].topic) {
            quizBank.push(testBank[z])
+           Topics.objectsTotal++;
        }
    }
 }
@@ -214,6 +229,7 @@ let topicChoice4 = function(e) {
    for (z = 0; z < testBank.length; z++) {
        if (document.getElementById('DOM').id === testBank[z].topic) {
            quizBank.push(testBank[z])
+           Topics.DOMTotal++;
        }
    }
 }
@@ -222,6 +238,7 @@ let topicChoice5 = function(e) {
    for (z = 0; z < testBank.length; z++) {
        if (document.getElementById('localStorage').id === testBank[z].topic) {
            quizBank.push(testBank[z])
+           Topics.localStorageTotal++;
        }
    }
 }
@@ -231,6 +248,14 @@ let topicSubmit = function(e) {
     answerChoices();
     answerEventFunc();
     scrollToBottom();
+    elSubmitTopic.removeEventListener('click', topicSubmit);
+    elTopic1.removeEventListener('click', topicChoice1);
+    elTopic2.removeEventListener('click', topicChoice1);
+    elTopic3.removeEventListener('click', topicChoice1);
+    elTopic4.removeEventListener('click', topicChoice1);
+    elTopic5.removeEventListener('click', topicChoice1);
+    let elQuizSelect = document.getElementsByClassName('quizSelect');
+    elQuizSelect.removeChild(elSubmitTopic);
 }
 
 //==========FUNCTIONS FOR EVENT HANDLERS ================
@@ -245,14 +270,39 @@ let responseCheck = function(){
     if (quizBank[index].userResponse === quizBank[index].correctAnswer){
         response.setAttribute('style', 'background: #00cc66');
         responseAppear[counter].innerText = "Correct";
-        quizBank[index].result = true;
+        quizBank[index].questionResult = true;
         correctAnswerChosen++;
+
+        if (quizBank[index].topic === "functions") {
+            Topics.functionsCorrect++;
+            console.log("Topics.functionsCorrect " + Topics.functionsCorrect + " Topics.functionsTotal " + Topics.functionsTotal)
+        }
+
+        if (quizBank[index].topic === "loops") {
+            Topics.loopsCorrect++;
+            console.log("Topics.loopsCorrect " + Topics.loopsCorrect + " Topics.loopsTotal " + Topics.loopsTotal)
+        }
+
+        if (quizBank[index].topic === "objects") {
+            Topics.objectsCorrect++;
+            console.log("Topics.objectsCorrect " + Topics.objectsCorrect + " Topics.objectsTotal " + Topics.objectsTotal)
+        }
+
+        if (quizBank[index].topic === "DOM") {
+            Topics.DOMCorrect++;
+            console.log("Topics.DOMCorrect " + Topics.DOMCorrect + " Topics.DOMTotal " + Topics.DOMTotal)
+        }
+
+        if (quizBank[index].topic === "localStorage") {
+            Topics.localStorageCorrect++;
+            console.log("Topics.localStorageCorrect " + Topics.localStorageCorrect + " Topics.localStorageTotal " + Topics.localStorageTotal)
+        }
     }
     
     else {
         response.setAttribute('style', 'background: #ff4d4d');
         responseAppear[counter].innerText = "Incorrect";
-        quizBank[index].result = false;
+        quizBank[index].questionResult = false;
         incorrectAnswerChosen++;
     }
 
@@ -278,12 +328,14 @@ let clicked = function(e) {
 }
 
 let nextClicked = function (e) {
-    counter++;
+    if (quizBank[index].userResponse){
+        counter++;
 
-    questionPopulate();
-    answerChoices();
-    answerEventFunc();
-    scrollToBottom();
+        questionPopulate();
+        answerChoices();
+        answerEventFunc();
+        scrollToBottom();
+    }
 }
 
 //==============FIRING EVENTS + EXECUTION===============
