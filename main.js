@@ -164,20 +164,21 @@ let answerChoices = function(){
         newAnswerChoices.appendChild(newAnswer);
         newAnswer.setAttribute('class', 'answerChoice');
 
-        let j = randomAnswer(); 
+        let j = randomAnswer(); //0-3
             
-        for (let k = 0; k < answerArray.length; k++) {
-            while (j == answerArray[k]) {
-                j = randomAnswer();
-            }
+        for (let k = 0; k < answerArray.length; ) {
+                if (j === answerArray[k]) {
+                    j = randomAnswer();
+                    k = 0;
+                }
+                else {
+                    k++;
+                }
         }
         answerArray.push(j);
+        console.log ("answer array = " + answerArray);
         newAnswer.innerText = quizBank[index].answerOptions[j];
     }
-
-    //for (let i=0; i < answersAppear.length; i++){
-    //    answersAppear[i].innerText= quizBank[index].answerOptions[i];
-    //}
 }
 
 //pushing the questions of the function questions objects into an array that holds all the questions for the function topic
