@@ -254,8 +254,11 @@ let topicSubmit = function(e) {
     elTopic3.removeEventListener('click', topicChoice1);
     elTopic4.removeEventListener('click', topicChoice1);
     elTopic5.removeEventListener('click', topicChoice1);
-    let elQuizSelect = document.getElementsByClassName('quizSelect');
-    elQuizSelect.removeChild(elSubmitTopic);
+
+    //let element = document.getElementById("element-id");
+    //element.parentNode.removeChild(element);
+    //let elQuizSelect = document.getElementsByClassName('quizSelect');
+    //elQuizSelect.removeChild(elSubmitTopic);
 }
 
 //==========FUNCTIONS FOR EVENT HANDLERS ================

@@ -148,3 +148,43 @@ button {
     position: absolute;
     padding: 20px 0 15vh 0;
   }
+
+  h2.quizBanner {
+    background-color: #f2f2f2 ;
+    border: 1px solid ;
+    position: fixed ;
+    top: 0px ;
+    right: 10px ;
+    width: 140px ;
+    padding: 0px 10px 0px 20px ;  
+  }
+
+  h2.chartBanner {
+    background-color: #f2f2f2 ;
+    border: 1px solid ;
+    position: fixed ;
+    top: 30px ;
+    right: 10px ;
+    width: 140px ;
+    padding: 0px 10px 0px 20px ;
+  }
+  
+  h2.scoreBanner {
+    background-color: #f2f2f2 ;
+    border: 1px solid ;
+    position: fixed ;
+    top: 0px ;
+    right: 10px ;
+    width: 140px ;
+    padding: 0px 10px 0px 20px ;  
+  }
+
+  h2.scoreBanner2 {
+    background-color: #f2f2f2 ;
+    border: 1px solid ;
+    position: fixed ;
+    top: 30px ;
+    right: 10px ;
+    width: 140px ;
+    padding: 0px 10px 0px 20px ;  
+  }
