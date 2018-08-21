@@ -1,4 +1,7 @@
 // create a chart within the canvas element
+Topics = JSON.parse(localStorage.getItem("Topics"))
+console.log(Topics)
+
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     type: 'bar',
@@ -6,14 +9,14 @@ var chart = new Chart(ctx, {
         labels: ["Functions", "Loops", "Objects", "The DOM", "Local Storage"],
         datasets: [{
             label: "Answers Correct", 
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'red',
+            borderColor: 'red',
             data: [Topics.functionsCorrect, Topics.loopsCorrect, Topics.objectsCorrect, Topics.DOMCorrect, Topics.localStorageCorrect],
         } ,
             {
             label: "Questions Asked",
-            backgroundColor: 'purple',
-            borderColor: 'purple',
+            backgroundColor: 'blue',
+            borderColor: 'blue',
             data: [Topics.functionsTotal, Topics.loopsTotal, Topics.objectsTotal, Topics.DOMTotal, Topics.localStorageTotal],
         }]
     },
@@ -25,5 +28,13 @@ var chart = new Chart(ctx, {
         fontStyle: 'bold',
         fontFamily: "'monospace'",
         fontColor: 'rgb(4, 8, 245)',
+        scales: {
+            xAxes: [{
+                stacked: true
+            }],
+            yAxes: [{
+                stacked: true
+            }]
+        }
     }
 })

@@ -203,6 +203,7 @@ let topicChoice1 = function(e) {
        if (document.getElementById('functions').id === testBank[z].topic) {
            quizBank.push(testBank[z])
            Topics.functionsTotal++;
+           localStorage.setItem("Topics", JSON.stringify(Topics));
        }  
    }
 }
@@ -212,6 +213,7 @@ let topicChoice2 = function(e) {
        if (document.getElementById('loops').id === testBank[z].topic) {
            quizBank.push(testBank[z])
            Topics.loopsTotal++;
+           localStorage.setItem("Topics", JSON.stringify(Topics));
        }
    }
 }
@@ -221,6 +223,7 @@ let topicChoice3 = function(e) {
        if (document.getElementById('objects').id === testBank[z].topic) {
            quizBank.push(testBank[z])
            Topics.objectsTotal++;
+           localStorage.setItem("Topics", JSON.stringify(Topics));
        }
    }
 }
@@ -230,6 +233,7 @@ let topicChoice4 = function(e) {
        if (document.getElementById('DOM').id === testBank[z].topic) {
            quizBank.push(testBank[z])
            Topics.DOMTotal++;
+           localStorage.setItem("Topics", JSON.stringify(Topics));
        }
    }
 }
@@ -239,6 +243,7 @@ let topicChoice5 = function(e) {
        if (document.getElementById('localStorage').id === testBank[z].topic) {
            quizBank.push(testBank[z])
            Topics.localStorageTotal++;
+           localStorage.setItem("Topics", JSON.stringify(Topics));
        }
    }
 }
@@ -250,15 +255,18 @@ let topicSubmit = function(e) {
     scrollToBottom();
     elSubmitTopic.removeEventListener('click', topicSubmit);
     elTopic1.removeEventListener('click', topicChoice1);
+    elTopic1.setAttribute("disabled", "true");
     elTopic2.removeEventListener('click', topicChoice1);
+    elTopic2.setAttribute("disabled", "true");
     elTopic3.removeEventListener('click', topicChoice1);
+    elTopic3.setAttribute("disabled", "true");
     elTopic4.removeEventListener('click', topicChoice1);
+    elTopic4.setAttribute("disabled", "true");
     elTopic5.removeEventListener('click', topicChoice1);
+    elTopic5.setAttribute("disabled", "true");
 
-    //let element = document.getElementById("element-id");
-    //element.parentNode.removeChild(element);
-    //let elQuizSelect = document.getElementsByClassName('quizSelect');
-    //elQuizSelect.removeChild(elSubmitTopic);
+    let elQuizSelect = document.getElementById('quizSelect');
+    elQuizSelect.removeChild(elSubmitTopic);
 }
 
 //==========FUNCTIONS FOR EVENT HANDLERS ================
@@ -279,26 +287,31 @@ let responseCheck = function(){
         if (quizBank[index].topic === "functions") {
             Topics.functionsCorrect++;
             console.log("Topics.functionsCorrect " + Topics.functionsCorrect + " Topics.functionsTotal " + Topics.functionsTotal)
+            localStorage.setItem("Topics", JSON.stringify(Topics));
         }
 
         if (quizBank[index].topic === "loops") {
             Topics.loopsCorrect++;
             console.log("Topics.loopsCorrect " + Topics.loopsCorrect + " Topics.loopsTotal " + Topics.loopsTotal)
+            localStorage.setItem("Topics", JSON.stringify(Topics));
         }
 
         if (quizBank[index].topic === "objects") {
             Topics.objectsCorrect++;
             console.log("Topics.objectsCorrect " + Topics.objectsCorrect + " Topics.objectsTotal " + Topics.objectsTotal)
+            localStorage.setItem("Topics", JSON.stringify(Topics));
         }
 
         if (quizBank[index].topic === "DOM") {
             Topics.DOMCorrect++;
             console.log("Topics.DOMCorrect " + Topics.DOMCorrect + " Topics.DOMTotal " + Topics.DOMTotal)
+            localStorage.setItem("Topics", JSON.stringify(Topics));
         }
 
         if (quizBank[index].topic === "localStorage") {
             Topics.localStorageCorrect++;
             console.log("Topics.localStorageCorrect " + Topics.localStorageCorrect + " Topics.localStorageTotal " + Topics.localStorageTotal)
+            localStorage.setItem("Topics", JSON.stringify(Topics));
         }
     }
     
