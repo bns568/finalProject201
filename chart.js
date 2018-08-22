@@ -41,8 +41,8 @@ var chart = new Chart(ctx, {
 
 //create event handler for clear all data button (clears local storage)
 let clearAllHandler = function(e) {
-    localStorage.clear();
-    location.reload();
+    localStorage.clear;
+    location.reload
 }
 
 let elClearAll = document.getElementById('clearAll');

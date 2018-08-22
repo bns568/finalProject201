@@ -40,20 +40,29 @@ let stupidDiv;
 let buttonHolder = document.getElementById('buttonHolder');
 let questionButton= document.createElement('button');
 
+let Topics;
 
 //===========OBJECT CONSTRUCTOR & INSTANCES============
 
-let Topics = {
-    functionsCorrect: 0,
-    functionsTotal: 0,
-    loopsCorrect: 0,
-    loopsTotal: 0, 
-    objectsCorrect: 0,
-    objectsTotal: 0, 
-    DOMCorrect: 0,
-    DOMTotal: 0, 
-    localStorageCorrect: 0,
-    localStorageTotal: 0, 
+if(localStorage.length != 0) {
+    console.log("local storage exists")
+    Topics = JSON.parse(localStorage.getItem("Topics"))
+}
+
+else {
+    console.log("local storage does not exist")
+    Topics = {
+        functionsCorrect: 0,
+        functionsTotal: 0,
+        loopsCorrect: 0,
+        loopsTotal: 0, 
+        objectsCorrect: 0,
+        objectsTotal: 0, 
+        DOMCorrect: 0,
+        DOMTotal: 0, 
+        localStorageCorrect: 0,
+        localStorageTotal: 0, 
+    }
 }
 
 //creating an object constructor with properties and method for the questions
@@ -395,7 +404,7 @@ let topicSubmit = function(e) {
         elReset.innerHTML= "Reset";
         elReset.addEventListener('click', resetHandler); 
 
-        localStorage.setItem("Topics", JSON.stringify(Topics));
+ //           Topics= localStorage.setItem("Topics", JSON.stringify(Topics));
 //    }
 }
 
