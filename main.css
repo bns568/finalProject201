@@ -5,6 +5,10 @@ body, html {
 /*YES I KNOW...BAD FOR ACCESBILITY BUT I. DONT. CARE. */
 textarea, select, input, button { outline: none; }
 
+.infoWrapper p {
+  line-height: 24px;
+}
+
 .quizSelect {
     padding: 3vw;
     color: white;
@@ -110,9 +114,29 @@ button {
                                   supported by Chrome and Opera */
   }
 
+  .infoCard {
+    background: white;
+    margin: 20px 15px 30px 15px;
+    padding: 3vw;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+    -moz-box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+    box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+  }
+
   .questionCard {
     background: white;
     margin: 20px 15px 30px 15px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+    -moz-box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+    box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+  }
+
+  .resultsCard {
+    background: white;
+    margin: 20px 15px 30px 15px;
+    padding: 3vw;
     border-radius: 8px;
     -webkit-box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
     -moz-box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
@@ -149,10 +173,71 @@ button {
     padding: 20px 0 15vh 0;
   }
 
+  .nav-item {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #b8b8b8;
+    font-size: .5rem;
+    background-color: white;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    line-height: 97px;
+    text-align: center;
+    -webkit-box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+    -moz-box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+    box-shadow: 0px 4px 38px 1px rgba(0,0,0,0.22);
+    transition: all .2s ease-in-out;
+  }
+
+  .nav-item:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    color: #333333;
+  }
+
+  .nav-item:nth-child(2) {
+    top: 90px;
+  }
+
+  .nav-item:nth-child(3) {
+    top: 170px;
+  }
+
+  nav a, nav a:visited {
+    text-decoration: none;
+  }
+
+  .icon-wrapper {
+    position: absolute;
+    width: 32%;
+    height: 44px;
+    left: 25px;
+    overflow: hidden;
+    top: -6px;
+  }
+
+  .icon-wrapper__2 {
+    width: 36%;
+    height: 44px;
+    left: 23px;
+    top: -3px;
+  }
+
+  .icon-wrapper__3 {
+    width: 38%;
+    height: 44px;
+    left: 21px;
+    top: -2px;
+  }
+
   h2.quizBanner {
     text-transform: uppercase;
     letter-spacing: -1px;
-    background-color: darkgray ;
+    background-color: rgb(230, 230, 230) ;
     border: 1px solid ;
     position: fixed ;
     top: 0px ;

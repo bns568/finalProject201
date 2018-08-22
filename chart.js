@@ -9,14 +9,14 @@ var chart = new Chart(ctx, {
         labels: ["Functions", "Loops", "Objects", "The DOM", "Local Storage"],
         datasets: [{
             label: "Answers Correct", 
-            backgroundColor: 'red',
-            borderColor: 'red',
+            backgroundColor: '#00cc66',
+            borderColor: '#00cc66',
             data: [Topics.functionsCorrect, Topics.loopsCorrect, Topics.objectsCorrect, Topics.DOMCorrect, Topics.localStorageCorrect],
         } ,
             {
             label: "Questions Asked",
-            backgroundColor: 'blue',
-            borderColor: 'blue',
+            backgroundColor: '#e1e1e1',
+            borderColor: '#e1e1e1',
             data: [Topics.functionsTotal, Topics.loopsTotal, Topics.objectsTotal, Topics.DOMTotal, Topics.localStorageTotal],
         }]
     },
@@ -33,7 +33,10 @@ var chart = new Chart(ctx, {
                 stacked: true
             }],
             yAxes: [{
-                stacked: true
+                stacked: false,
+                ticks: {
+                    beginAtZero: true
+                }
             }]
         }
     }

@@ -6,9 +6,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
  </head>
   <body>
-    <h2 class ="homeBanner2"><a href="home.html">Home</a></h2>
-    <h2 class ="quizBanner"><a href="index.html">Quiz</a></h2>
-    <div id="chart">
+        <nav>
+                <a href="home.html" class ="nav-item">
+                    <div class="icon-wrapper">
+                        <img src="svg/home.svg">
+                    </div>
+                    Home
+                </a>
+                <a href="index.html" class ="nav-item">
+                    <div class="icon-wrapper icon-wrapper__2">
+                        <img src="svg/quiz.svg">
+                    </div>
+                    Quiz
+                </a>
+                <a href="chart.html" class ="nav-item">
+                    <div class="icon-wrapper icon-wrapper__3">
+                        <img src="svg/results.svg">
+                    </div>
+                    Results
+                </a>
+            </nav>
+
+    <div id="chart" class="resultsCard">
+        <h1 class= "title">Quiz <span>Results</span></h1>
         <canvas id="myChart">
             
         </canvas>

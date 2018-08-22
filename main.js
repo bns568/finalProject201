@@ -312,7 +312,7 @@ let topicChoice2 = function(e) {
             if (document.getElementById('loops').id === testBank[z].topic) {
                 quizBank = quizBank.filter(function (val) { 
                     return val.topic != "loops" })
-                Topics.functionsTotal--;
+                Topics.loopsTotal--;
             }  
         } 
     }
@@ -332,7 +332,7 @@ let topicChoice3 = function(e) {
             if (document.getElementById('objects').id === testBank[z].topic) {
                 quizBank = quizBank.filter(function (val) { 
                     return val.topic != "objects" })
-                Topics.functionsTotal--;
+                Topics.objectsTotal--;
             }  
         } 
     }
@@ -352,7 +352,7 @@ let topicChoice4 = function(e) {
             if (document.getElementById('DOM').id === testBank[z].topic) {
                 quizBank = quizBank.filter(function (val) { 
                     return val.topic != "DOM" })
-                Topics.functionsTotal--;
+                Topics.DOMTotal--;
             }  
         } 
     }
@@ -372,7 +372,7 @@ let topicChoice5 = function(e) {
             if (document.getElementById('localStorage').id === testBank[z].topic) {
                 quizBank = quizBank.filter(function (val) { 
                     return val.topic != "localStorage" })
-                Topics.functionsTotal--;
+                Topics.localStorageTotal--;
             }  
         } 
     }
