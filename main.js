@@ -1,30 +1,31 @@
 //=============GLOBAL VARIABLES DECLARATION & ASSIGNMENT============
-//creating an array that stores the questions for the topic 'functions'
+
+//create an array that stores the questions selected from the topic submit button
 let quizBank= [];
+
 //counts the number of questions we ask, starting at zero for an array
 let counter = 0;
+
 //tracks index of the quizBank array 
 let index=0;
+
 // create varibales that stores an array boolean values (true or false) when user clicks on answer choice
 let correctAnswerChosen = 0;
 let incorrectAnswerChosen = 0;
 
+//create an array that contains all questions
 let testBank = [];
+
+
+//----ACCESSING DOM ELEMENTS-----
 
 //assigning my HTLML element to a variable that holds the spot for the question
 let questionsAppear = document.getElementsByClassName('populateQuestions');
-
 //assigning my HTML elements with attribute class to a variable that will hold the list of answer choice.
 let answersAppear = document.getElementsByClassName('answerChoice');
-
 //creating a variable that will hold the HTML element which displays response to user after they click
 let responseAppear = document.getElementsByClassName('response');
-
 let quizElement = document.getElementById('quiz');
-
-//necessary in order to make it pretty- hence the dripping sarcasm
-let stupidDiv;
-
 let elTopic1 = document.getElementById('functions')
 let elTopic2 = document.getElementById('loops')
 let elTopic3 = document.getElementById('objects')
@@ -32,9 +33,13 @@ let elTopic4 = document.getElementById('DOM')
 let elTopic5 = document.getElementById('localStorage')
 let elSubmitTopic = document.getElementById('dataSubmit');
 
+//necessary in order to make it pretty- hence the dripping sarcasm
+let stupidDiv;
+
 //create a next button
 let buttonHolder = document.getElementById('buttonHolder');
 let questionButton= document.createElement('button');
+
 
 //===========OBJECT CONSTRUCTOR & INSTANCES============
 
@@ -65,6 +70,7 @@ let Question = function(topic, question, answerOptions, userResponse, questionRe
     this.questionResult = questionResult;
 }
 
+//test bank
 q01 = new Question('functions', 'To execute the code block in a function, we do what?', ['Invoke the function','Define the function','Construct the function','Declare the function'], null, null) ;
 
 q02 = new Question('functions', 'An invoked function is the ________ thing the JavaScript interpreter executes when a page loads.', [' first','final','second','third'], null, null) ;
@@ -91,7 +97,7 @@ q22 = new Question('objects', 'In an object, functions become known as _______?'
 
 q23 = new Question('objects', 'An object constructor provides what main advantage?', ['Multiple instantiations', 'A single instantiation', 'Defined keys', 'Defined values'], null, null) ;
 
-q24 = new Question('objects', 'What will ' + '<strong>math.round()</strong>' + ' change 4.39 to?', ['4', '4.5', '5', '4.8'], null, null) ;
+//q24 = new Question('objects', 'What will ' + '<strong>math.round()</strong>' + ' change 4.39 to?', ['4', '4.5', '5', '4.8'], null, null) ;
 
 q25 = new Question('objects', 'How do you delete the property ' + '<em>pool</em>' + ' from this object: let house = {windows:12, rooms:2, pool:1};', ['delete house.pool', 'delete pool.1', 'delete pool', 'delete pool.house'], null, null) ;
 
@@ -115,24 +121,28 @@ q44 = new Question('localStorage', 'How do you remove stored items from your bro
 
 q45 = new Question('localStorage', "How  do you remove this key/value pair: 'color','blue'?", ["removeItem('color')",'remove.color', "removeItem('color',12)", 'removeItem.color.blue'], null, null) ;
 
+testBank.push(q01, q02, q03, q04, q05, q11, q12, q13, q14, q15, q21, q22, q23, q25, q31, q32, q33, q34, q35, q41, q42, q43, q44, q45);
 
-//=========Index for tracking what questions we are on===============
 
-//The "index" variable, declared above, will keep track of what question we are on, and we will pass this variable whereever we need to pass an index to the questions array
+//=========FUNCTIONS===============
 
+//tracks what question we are on
 function indexFunc() {
     index = Math.floor(Math.random() * quizBank.length);
     return index;
 } 
 
+//selects random answer within question object
 function randomAnswer() {
     aIndex = Math.floor(Math.random() * quizBank[index].answerOptions.length);
     return aIndex;
 }
 
+//auto scrolls to bottom of page
 function scrollToBottom() {
     window.scrollTo(0, document.body.scrollHeight);
 }
+
 
 //=====POPULATING DOM DYNAMICALLY=====
 
@@ -157,8 +167,6 @@ let questionPopulate= function(){
         quizBank[index].displayed = true;
         //questionsAppear = document.getElementsByClassName('populateQuestions');
 }
-
-//Placeholder for creating a function to randomize the answer options each time they appear (not part of the MVP)
 
 //creating a function that will populate the "answer options" property
 let answerChoices = function(){
@@ -193,85 +201,6 @@ let answerChoices = function(){
     }
 }
 
-//pushing the questions of the function questions objects into an array that holds all the questions for the function topic
-testBank.push(q01, q02, q03, q04, q05, q11, q12, q13, q14, q15, q21, q22, q23, q24, q25, q31, q32, q33, q34, q35, q41, q42, q43, q44, q45);
-
-// then attach an event handler
-
-let topicChoice1 = function(e) {
-   for (z = 0; z < testBank.length; z++) {
-       if (document.getElementById('functions').id === testBank[z].topic) {
-           quizBank.push(testBank[z])
-           Topics.functionsTotal++;
-           localStorage.setItem("Topics", JSON.stringify(Topics));
-       }  
-   }
-}
-
-let topicChoice2 = function(e) {
-   for (z = 0; z < testBank.length; z++) {
-       if (document.getElementById('loops').id === testBank[z].topic) {
-           quizBank.push(testBank[z])
-           Topics.loopsTotal++;
-           localStorage.setItem("Topics", JSON.stringify(Topics));
-       }
-   }
-}
-
-let topicChoice3 = function(e) {
-   for (z = 0; z < testBank.length; z++) {
-       if (document.getElementById('objects').id === testBank[z].topic) {
-           quizBank.push(testBank[z])
-           Topics.objectsTotal++;
-           localStorage.setItem("Topics", JSON.stringify(Topics));
-       }
-   }
-}
-
-let topicChoice4 = function(e) {
-   for (z = 0; z < testBank.length; z++) {
-       if (document.getElementById('DOM').id === testBank[z].topic) {
-           quizBank.push(testBank[z])
-           Topics.DOMTotal++;
-           localStorage.setItem("Topics", JSON.stringify(Topics));
-       }
-   }
-}
-
-let topicChoice5 = function(e) {
-   for (z = 0; z < testBank.length; z++) {
-       if (document.getElementById('localStorage').id === testBank[z].topic) {
-           quizBank.push(testBank[z])
-           Topics.localStorageTotal++;
-           localStorage.setItem("Topics", JSON.stringify(Topics));
-       }
-   }
-}
-
-let topicSubmit = function(e) {
-    questionPopulate();
-    answerChoices();
-    answerEventFunc();
-    scrollToBottom();
-    elSubmitTopic.removeEventListener('click', topicSubmit);
-    elTopic1.removeEventListener('click', topicChoice1);
-    elTopic1.setAttribute("disabled", "true");
-    elTopic2.removeEventListener('click', topicChoice1);
-    elTopic2.setAttribute("disabled", "true");
-    elTopic3.removeEventListener('click', topicChoice1);
-    elTopic3.setAttribute("disabled", "true");
-    elTopic4.removeEventListener('click', topicChoice1);
-    elTopic4.setAttribute("disabled", "true");
-    elTopic5.removeEventListener('click', topicChoice1);
-    elTopic5.setAttribute("disabled", "true");
-
-    let elQuizSelect = document.getElementById('quizSelect');
-    elQuizSelect.removeChild(elSubmitTopic);
-}
-
-//==========FUNCTIONS FOR EVENT HANDLERS ================
-
-//Function that will give the  response "correct" when the correct choice is clicked + score property (boolean)
 let responseCheck = function(){
     let response = document.createElement('p');
     response.setAttribute('class', 'response');
@@ -337,6 +266,139 @@ let responseCheck = function(){
     scrollToBottom();
 }
 
+
+//==========FUNCTIONS FOR EVENT HANDLERS ================
+
+let topicChoice1 = function(e) {
+    if(elTopic1.checked){
+        for (z = 0; z < testBank.length; z++) {
+            if (document.getElementById('functions').id === testBank[z].topic) {
+                quizBank.push(testBank[z])
+                Topics.functionsTotal++;
+            }  
+        }
+    }
+    else if(!elTopic1.checked) {
+        for (z = 0; z < testBank.length; z++) {
+            if (document.getElementById('functions').id === testBank[z].topic) {
+                quizBank = quizBank.filter(function (val) { 
+                    return val.topic != "functions" })
+                Topics.functionsTotal--;
+            }  
+        } 
+    }
+}
+
+let topicChoice2 = function(e) {
+    if(elTopic2.checked){
+        for (z = 0; z < testBank.length; z++) {
+            if (document.getElementById('loops').id === testBank[z].topic) {
+                quizBank.push(testBank[z])
+                Topics.loopsTotal++;
+            }
+        }
+    }
+    else if(!elTopic2.checked) {
+        for (z = 0; z < testBank.length; z++) {
+            if (document.getElementById('loops').id === testBank[z].topic) {
+                quizBank = quizBank.filter(function (val) { 
+                    return val.topic != "loops" })
+                Topics.functionsTotal--;
+            }  
+        } 
+    }
+}
+
+let topicChoice3 = function(e) {
+    if(elTopic3.checked){
+        for (z = 0; z < testBank.length; z++) {
+            if (document.getElementById('objects').id === testBank[z].topic) {
+                quizBank.push(testBank[z])
+                Topics.objectsTotal++;
+            }
+        }
+    }
+    else if(!elTopic3.checked) {
+        for (z = 0; z < testBank.length; z++) {
+            if (document.getElementById('objects').id === testBank[z].topic) {
+                quizBank = quizBank.filter(function (val) { 
+                    return val.topic != "objects" })
+                Topics.functionsTotal--;
+            }  
+        } 
+    }
+}
+
+let topicChoice4 = function(e) {
+    if(elTopic4.checked){
+        for (z = 0; z < testBank.length; z++) {
+            if (document.getElementById('DOM').id === testBank[z].topic) {
+                quizBank.push(testBank[z])
+                Topics.DOMTotal++;
+            }
+        }
+    }  
+    else if(!elTopic4.checked) {
+        for (z = 0; z < testBank.length; z++) {
+            if (document.getElementById('DOM').id === testBank[z].topic) {
+                quizBank = quizBank.filter(function (val) { 
+                    return val.topic != "DOM" })
+                Topics.functionsTotal--;
+            }  
+        } 
+    }
+}
+
+let topicChoice5 = function(e) {
+    if(elTopic5.checked){
+        for (z = 0; z < testBank.length; z++) {
+            if (document.getElementById('localStorage').id === testBank[z].topic) {
+                quizBank.push(testBank[z])
+                Topics.localStorageTotal++;
+            }
+        }
+    }
+    else if(!elTopic5.checked) {
+        for (z = 0; z < testBank.length; z++) {
+            if (document.getElementById('localStorage').id === testBank[z].topic) {
+                quizBank = quizBank.filter(function (val) { 
+                    return val.topic != "localStorage" })
+                Topics.functionsTotal--;
+            }  
+        } 
+    }
+}
+
+let topicSubmit = function(e) {
+//    if(!elTopic1.checked  && !elTopic2.checked && !elTopic3.checked && elTopic4.checked && elTopic5.checked) {
+        questionPopulate();
+        answerChoices();
+        answerEventFunc();
+        scrollToBottom();
+        elSubmitTopic.removeEventListener('click', topicSubmit);
+        elTopic1.removeEventListener('click', topicChoice1);
+        elTopic1.setAttribute("disabled", "true");
+        elTopic2.removeEventListener('click', topicChoice1);
+        elTopic2.setAttribute("disabled", "true");
+        elTopic3.removeEventListener('click', topicChoice1);
+        elTopic3.setAttribute("disabled", "true");
+        elTopic4.removeEventListener('click', topicChoice1);
+        elTopic4.setAttribute("disabled", "true");
+        elTopic5.removeEventListener('click', topicChoice1);
+        elTopic5.setAttribute("disabled", "true");
+
+        let elQuizSelect = document.getElementById('quizSelect');
+        elQuizSelect.removeChild(elSubmitTopic);
+        let elReset = document.createElement('button');
+        elReset.setAttribute('id', 'reset');
+        elQuizSelect.appendChild(elReset);
+        elReset.innerHTML= "Reset";
+        elReset.addEventListener('click', resetHandler); 
+
+        localStorage.setItem("Topics", JSON.stringify(Topics));
+//    }
+}
+
 let clicked = function(e) {
     quizBank[index].userResponse = e.target.innerHTML; 
     responseCheck();
@@ -354,8 +416,14 @@ let nextClicked = function (e) {
     }
 }
 
-//==============FIRING EVENTS + EXECUTION===============
-// creating an code to run when the event click is fired in my HTML
+let resetHandler = function (e) {
+    console.log("resetting");
+    location.reload();
+}
+
+
+//==============ATTACH EVENT LISTENERS===============
+
 let answerEventFunc = function() {
     for(let i= (counter * 4); i < answersAppear.length; i++){
         answersAppear[i].addEventListener('click', clicked);
@@ -369,8 +437,6 @@ let removeEventFunc = function() {
 }
 
 questionButton.addEventListener('click', nextClicked)
-
-// attach event listeners to topics
 elTopic1.addEventListener('click', topicChoice1);
 elTopic2.addEventListener('click', topicChoice2);
 elTopic3.addEventListener('click', topicChoice3);
@@ -378,6 +444,8 @@ elTopic4.addEventListener('click', topicChoice4);
 elTopic5.addEventListener('click', topicChoice5);
 elSubmitTopic.addEventListener('click', topicSubmit);
 
+
+//Only run code if a topic is selected
 if (quizBank.length != 0){
     questionPopulate();
     answerChoices();
