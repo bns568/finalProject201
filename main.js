@@ -98,7 +98,7 @@ q13 = new Question('loops', 'If "5" === 5, it returns a ____ value?', ['false', 
 
 q14 = new Question('loops', 'If the length of an array is 6, which of the following' + '<b><i>for loop</b></i>' + 'is correct?', ['for (let i=0; i<6; i++)', 'for(let i=1; i>6; i++)', 'for(let i=0; i>5); i++', 'for(let i=1; i>6; i+-)'], null, null) ;
 
-q15 = new Question('loops', 'What is the differenct between a ' + '<b><i>for loop</b></i>' + ' and a ' + '<b><i>while loop</b></i>' + '?', ['a ' + 'for loop' + ' runs a code a specific number of times and a ' + 'while loop' + ' is used when you do not know the code should run' , 'no difference', 'while loop' + ' is less common', 'for loop' + ' is widely used'], null, null) ;
+q15 = new Question('loops', 'What is the difference between a ' + '<b><i>for loop</b></i>' + ' and a ' + '<b><i>while loop</b></i>' + '?', ['a ' + 'for loop' + ' runs a code a specific number of times and a ' + 'while loop' + ' is used when you do not know the code should run' , 'no difference', 'while loop' + ' is less common', 'for loop' + ' is widely used'], null, null) ;
 
 q21 = new Question('objects', 'In an object, variables become known as _______?', ['properties', 'scripts', 'keys', 'values'], null, null) ;
 
