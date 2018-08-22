@@ -379,7 +379,7 @@ let topicChoice5 = function(e) {
 }
 
 let topicSubmit = function(e) {
-//    if(!elTopic1.checked  && !elTopic2.checked && !elTopic3.checked && elTopic4.checked && elTopic5.checked) {
+    if(elTopic1.checked  || elTopic2.checked || elTopic3.checked || elTopic4.checked || elTopic5.checked) {
         questionPopulate();
         answerChoices();
         answerEventFunc();
@@ -405,7 +405,7 @@ let topicSubmit = function(e) {
         elReset.addEventListener('click', resetHandler); 
 
  //           Topics= localStorage.setItem("Topics", JSON.stringify(Topics));
-//    }
+    }
 }
 
 let clicked = function(e) {
